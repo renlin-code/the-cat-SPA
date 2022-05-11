@@ -1,5 +1,161 @@
-img {
+:root {
+    --main-color: #5e78ce;
+    --secondary-color: #f8efdc;
+    --black-color: #383737;
+    --soft-gray: #e7e7e7;
+    --white-color: #f5f5f5;
+}
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+html {
+    font-size: 62.5%;
+    font-family: "Montserrat", sans-serif;
+}
+header {
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-width: 350px;
+    height: auto;
+    background-color: var(--main-color);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    transition: all 400ms;
+}
+header h1 {
+    font-family: "Merienda", cursive;
+    font-size: 4.0rem;
+    color: var(--white-color);
+}
+header .button-to-favorites {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.6rem;
+    color: var(--white-color);
+    font-weight: bold;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+body {
+    background-color: var(--secondary-color);
+}
+.random-cats-section {
+    width: 100%;
+    transition: all 400ms;
+}
+.section-container {
+    max-width: 90%;
+    min-width: 320px;
+    height: 600px;
+    margin: 0 auto;
+}
+
+.random-cats-section .section-container .wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: 120px 0;
+}
+.random-cats-section .section-container .wrapper .cat-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: var(--white-color);
+    border-radius: 4px;
+    box-shadow: 6px 6px 6px rgba(0, 0, 0, 0.16);
+}
+
+.random-cats-section .section-container .wrapper .cat-card .cat-figure {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-y: hidden;
     width: 300px;
     height: 300px;
+    background-color: var(--soft-gray);
+}
+img {
+    width: 300px;
+    height: auto;
     object-fit: contain;
+}
+.random-cats-section .section-container .wrapper .cat-card .cat-card--button {
+    font-family: "Montserrat", sans-serif;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--black-color);
+    background: none;
+    border: 1px solid var(--black-color);
+    width: 44%;
+    margin: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.main-title {
+    font-family: "Patrick Hand", cursive;
+    font-size: 2.4rem;
+    text-align: center;
+    color: var(--black-color);
+    margin: 20px 0 40px;
+}
+.favorites-section {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 100%;
+    width: 100%;
+    height: 100%;
+    background: var(--white-color);
+    transition: all 400ms;
+}
+.favorites-section .section-container .secondary-header {
+    width: 100vw;
+    position: relative;
+}
+.favorites-section .section-container .secondary-header .section-container--back-button {
+    position: absolute;
+    left: 0;
+    top: calc(50% - 10px);
+    width: 30px;
+    height: 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    background-image: url("../assets/icons/arrow.svg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.favorites-section .section-container .favorite-cats--grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    position: absolute;
+    left: 10%;
+    justify-items: center;
+    width: 80%;
+    height: auto;
+}
+.favorites-section .section-container .favorite-cats--grid div {
+    width: 100px;
+    height: 100px;
+    background-color: var(--soft-gray);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all 400ms;
+    cursor: pointer;
+}
+.favorites-section .section-container .favorite-cats--grid div:hover {
+    transform: scale(1.05);
 }

@@ -4,37 +4,83 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merienda:wght@400;700&family=Montserrat:wght@400;500;600&family=Patrick+Hand&display=swap" rel="stylesheet">    
     <link rel="stylesheet" href="/css/main.css">
     <title>Random cats</title>
 </head>
 <body>
-    <header></header>
+    <header>
+        <h1>The cat</h1>
+        <button onclick="openFavorites()" id="buttonToFavorites" class="button-to-favorites">Favorites</button>
+    </header>
     <main>
-        <section id="randomCatsSection">
-            <h1>Random cats</h1>
-            <span id="randomCatsError"></span>
-            <article>
-                <img id=img1 src="" alt="A random cat">
-                <button id="saveButton1">Save</button>
-            </article>
-            <article>
-                <img id=img2 src="" alt="A random cat">
-                <button id="saveButton2">Save</button>
-            </article>
-            <button id="reloadButton">Reload</button>
+        <section class="random-cats-section" id="randomCatsSection">
+            <div class="section-container">
+                <div class="wrapper">
+                    <article class="cat-card">
+                        <figure class="cat-figure">
+                            <img class="cat-image" id=img1 src="" alt="A random cat">
+                        </figure>
+                        <button class="cat-card--button" id="saveButton1">Save to favorites</button>
+                    </article>
+                    <article class="cat-card">
+                        <figure class="cat-figure">
+                            <img class="cat-image" id=img2 src="" alt="A random cat">
+                        </figure>
+                        <button class="cat-card--button" id="saveButton2">Save to favorites</button>
+                    </article>
+                    <article class="cat-card">
+                        <figure class="cat-figure">
+                            <img class="cat-image" id=img3 src="" alt="A random cat">
+                        </figure>
+                        <button class="cat-card--button" id="saveButton3">Save to favorites</button>
+                    </article>
+                    <article class="cat-card">
+                        <figure class="cat-figure">
+                            <img class="cat-image" id=img4 src="" alt="A random cat">
+                        </figure>
+                        <button class="cat-card--button" id="saveButton4">Save to favorites</button>
+                    </article>
+                    <article class="cat-card">
+                        <figure class="cat-figure">
+                            <img class="cat-image" id=img5 src="" alt="A random cat">
+                        </figure>
+                        <button class="cat-card--button" id="saveButton5">Save to favorites</button>
+                    </article>
+                    <article class="cat-card">
+                        <figure class="cat-figure">
+                            <img class="cat-image" id=img6 src="" alt="A random cat">
+                        </figure>
+                        <button class="cat-card--button" id="saveButton6">Save to favorites</button>
+                    </article>
+                </div>
+            </div>
         </section>
 
-        <section id="uploadingCats">
-            <h1>Upload cat</h1>
-            <form id="uploadingForm">
-                <input id="newCatFile" type="file" name="file">
-                <button id="uploadButton" type="button">Upload</button>
+        <!-- <section class="uploading-cats-section" id="uploadingCats">
+            <h2 class="main-title">Upload cat</h2>
+            <form class="uploading-form" id="uploadingForm">
+                <input class="uploading-input" id="newCatFile" type="file" name="file">
+                <button class="uploading-button" id="uploadButton" type="button">Upload</button>
             </form>
+        </section> -->
+
+        <section class="favorites-section" id="favoriteCatsSection">
+            <div class="section-container">
+                <div class="secondary-header">
+                    <button onclick="closeFavorites()" class="section-container--back-button"></button>
+                    <h2 class="main-title">Favorites cats</h2>
+                </div>
+                <div class="favorite-cats--grid" id="grid"></div>
+            </div>
         </section>
 
-        <section id="favoriteCatsSection">
-            <h1>Favorites cats</h1>
-        </section>
+        <div class="pop-up">
+            <span id="randomCatsError"></span>
+        </div>
+
     </main>
     <footer></footer>
     <script src="./script/main.js"></script>
