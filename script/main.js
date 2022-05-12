@@ -96,10 +96,13 @@ async function loadFavoriteCats() {
         randomCatsError.innerHTML = `Somethig is wrong: ${res.status} ${data.message}`
     } else {
         console.log(data);
-        const grid = document.getElementById("grid");
 
+        const buttonToFavorites = document.getElementById("buttonToFavorites");
+        buttonToFavorites.innerHTML = `(${data.length}) Favorites`;
+
+        const grid = document.getElementById("grid");
         grid.innerHTML = "";
-        
+
         data.forEach(cat => {
             const gridElement = document.createElement("div");
 
