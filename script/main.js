@@ -105,11 +105,11 @@ async function loadFavoriteCats() {
 
         data.forEach(cat => {
             const gridElement = document.createElement("div");
+            gridElement.id = cat.id;
 
-
-            // btn.addEventListener("click",() => {
-            //     deleteFavoriteCat(cat.id)
-            // })
+            gridElement.addEventListener("click",() => {
+                openFavoriteCatWindow(cat.image.url)
+            })
 
             gridElement.style.backgroundImage = `url(${cat.image.url}`;
             grid.appendChild(gridElement);
@@ -182,3 +182,22 @@ const closeFavorites = () => {
     randomCatsSection.style.transform = "translateX(0)";
 };
 
+const openFavoriteCatWindow = (id) => {
+    const favoriteCatWindow = document.getElementById("favoriteCatWindow");
+    const favoriteCatImage = document.getElementById("favoriteCatImage");
+
+    favoriteCatWindow.style.transform = "scale(1)";
+    favoriteCatImage.style.transform = "scale(1)";
+    favoriteCatImage.src = id;    
+};
+const closeFavoriteCatWindow = () => {
+    const favoriteCatWindow = document.getElementById("favoriteCatWindow");
+    const favoriteCatImage = document.getElementById("favoriteCatImage");
+    favoriteCatImage.style.transform = "scale(0)";
+    setTimeout(() => {
+        favoriteCatWindow.style.transform = "scale(0)";
+    }, 300)
+
+
+
+}
