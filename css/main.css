@@ -90,15 +90,17 @@ body {
     object-fit: contain;
 }
 .cat-card--button {
+    align-self: center;
     font-family: "Montserrat", sans-serif;
     font-size: 1.4rem;
     font-weight: bold;
-    color: var(--black-color);
+    color: var(--main-color);
     background: none;
-    border: 1px solid var(--black-color);
+    border: 1px solid var(--main-color);
     width: 44%;
     margin: 16px;
-    border-radius: 6px;
+    padding: 4px;
+    border-radius: 2px;
     cursor: pointer;
 }
 
@@ -117,7 +119,7 @@ body {
     width: 100%;
     min-width: 320px;
     height: 100%;
-    background: var(--white-color);
+    background: var(--secondary-color);
     transition: all 400ms;
 }
 .favorites-section .section-container .secondary-header {
@@ -176,7 +178,7 @@ body {
     width: 100%;
     min-width: 320px;
     height: 100%;
-    background: rgba(22, 22, 22, 0.9);
+    background: rgba(41, 41, 41, 0.9);
     transform: scale(0);
 }
 .favorites-section .section-container .favorite-cat--window .favorite-cat-image {
