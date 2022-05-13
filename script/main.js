@@ -29,6 +29,7 @@ async function loadRandomCats(amount) {
             const catCard = document.createElement("article");
             saveButton.addEventListener("click", () => {
                 saveFavoriteCat(cat.id);
+                addToFavoritesAnimations();
             });
             saveButton.classList.add("cat-card--button");
             saveButton.innerHTML = "Add to favorites";
@@ -44,6 +45,7 @@ async function loadRandomCats(amount) {
         })
     }
 }
+
 async function saveFavoriteCat(id) {
     const res = await fetch(API_URL_FAVORITES, {
         method: "POST",
@@ -77,6 +79,7 @@ async function loadFavoriteCats() {
     if (res.status !== 200) {
         randomCatsError.innerHTML = `Somethig is wrong: ${res.status} ${data.message}`
     } else {
+        console.log("Favorites");
         console.log(data);
 
         const buttonToFavorites = document.getElementById("buttonToFavorites");
@@ -142,6 +145,7 @@ loadFavoriteCats();
 // uploadButton.addEventListener("click", uploadCat);
 
 
+
 //NAVIGATION FUNCTIONS
 const openFavorites = () => {
     const favoriteCatsSection = document.getElementById("favoriteCatsSection");
@@ -151,6 +155,7 @@ const openFavorites = () => {
     favoriteCatsSection.style.transform = "translateX(-100%)";
     header.style.transform = "translateX(-100%)";
     randomCatsSection.style.transform = "translateX(-100%)";
+    randomCatsSection.style.position = "fixed";
 };
 
 const closeFavorites = () => {
@@ -161,6 +166,7 @@ const closeFavorites = () => {
     favoriteCatsSection.style.transform = "translateX(0)";
     header.style.transform = "translateX(0)";
     randomCatsSection.style.transform = "translateX(0)";
+    randomCatsSection.style.position = "static";
 };
 
 const openFavoriteCatWindow = (catId, catUrl) => {
@@ -170,10 +176,12 @@ const openFavoriteCatWindow = (catId, catUrl) => {
     const closeButton = document.createElement("button");
 
     favoriteCatWindow.innerHTML ="";
-    
+
     favoriteCatImage.classList.add("favorite-cat--image");
-    favoriteCatImage.style.transform = "scale(1)";
-    favoriteCatImage.src = catUrl;    
+    favoriteCatImage.src = catUrl;
+    setTimeout(() => {
+        favoriteCatImage.style.transform = "scale(1)";
+    }, 0);
 
     removeButton.classList.add("favorite-cat--remove-button");
     removeButton.innerHTML = "Remove from favorites";
@@ -197,4 +205,12 @@ const closeFavoriteCatWindow = () => {
     setTimeout(() => {
         favoriteCatWindow.style.transform = "scale(0)";
     }, 300)
+}
+
+const addToFavoritesAnimations = () => {
+    const buttonToFavorites = document.getElementById("buttonToFavorites");
+    buttonToFavorites.style.transform = "scale(1.2)";
+    setTimeout(() => {
+        buttonToFavorites.style.transform = "scale(1)";
+    }, 200)    
 }
