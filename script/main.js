@@ -1,6 +1,6 @@
 "use strict"
 
-const API_URL_RANDOM = "https://api.thecatapi.com/v1/images/search?limit=6";
+const API_URL_RANDOM = (amount) => `https://api.thecatapi.com/v1/images/search?limit=${amount}`;
 const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites";
 const API_URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`;
 const API_URL_UPLOAD = "https://api.thecatapi.com/v1/images/upload";
@@ -12,56 +12,38 @@ const uploadButton = document.getElementById("uploadButton");
 
 
 //FUNCTIONS FOR FETCH
-async function loadRandomCats() {
-    const res = await fetch(API_URL_RANDOM);
+async function loadRandomCats(amount) {
+    const res = await fetch(API_URL_RANDOM(amount));
     const data = await res.json();
-    const saveButton1 = document.getElementById("saveButton1");
-    const saveButton2 = document.getElementById("saveButton2");
-    const saveButton3 = document.getElementById("saveButton3");
-    const saveButton4 = document.getElementById("saveButton4");
-    const saveButton5 = document.getElementById("saveButton5");
-    const saveButton6 = document.getElementById("saveButton6");
 
-    saveButton1.addEventListener("click", () => {
-        saveFavoriteCat(data[0].id);
-    });
-    saveButton2.addEventListener("click", () => {
-        saveFavoriteCat(data[1].id)
-    });
-    saveButton3.addEventListener("click", () => {
-        saveFavoriteCat(data[2].id)
-    });    
-    saveButton4.addEventListener("click", () => {
-        saveFavoriteCat(data[3].id)
-    });    
-    saveButton5.addEventListener("click", () => {
-        saveFavoriteCat(data[4].id)
-    });    
-    saveButton6.addEventListener("click", () => {
-        saveFavoriteCat(data[5].id)
-    });    
 
     if (res.status !== 200) {
         randomCatsError.innerHTML = `Somethig is wrong: ${res.status}`
     } else {
-        const img1 = document.getElementById("img1");
-        const img2 = document.getElementById("img2");
-        const img3 = document.getElementById("img3");
-        const img4 = document.getElementById("img4");
-        const img5 = document.getElementById("img5");
-        const img6 = document.getElementById("img6");
+        const wrapper = document.querySelector(".wrapper");
+    
+        data.forEach(cat => {
+            const saveButton = document.createElement("button");
+            const figure = document.createElement("figure");
+            const img = document.createElement("img");
+            const catCard = document.createElement("article");
+            saveButton.addEventListener("click", () => {
+                saveFavoriteCat(cat.id);
+            });
+            saveButton.classList.add("cat-card--button");
+            saveButton.innerHTML = "Add to favorites";
+            figure.classList.add("cat-figure");
+            img.classList.add("cat-image");
+            img.src = cat.url;
+            catCard.classList.add("cat-card");
 
-        img1.src = data[0].url;
-        img2.src = data[1].url;  
-        img3.src = data[2].url;   
-        img4.src = data[3].url;   
-        img5.src = data[4].url;   
-        img6.src = data[5].url;   
- 
-        console.log(data) 
+            figure.appendChild(img);
+            catCard.appendChild(figure);
+            catCard.appendChild(saveButton);
+            wrapper.appendChild(catCard);
+        })
     }
 }
-
 async function saveFavoriteCat(id) {
     const res = await fetch(API_URL_FAVORITES, {
         method: "POST",
@@ -112,7 +94,7 @@ async function loadFavoriteCats() {
 
             gridElement.style.backgroundImage = `url(${cat.image.url}`;
             grid.appendChild(gridElement);
-            })
+        })
     }
 }
 
@@ -155,7 +137,7 @@ async function uploadCat() {
     }
 }
 
-loadRandomCats();
+loadRandomCats(10);
 loadFavoriteCats();
 // uploadButton.addEventListener("click", uploadCat);
 
@@ -183,20 +165,34 @@ const closeFavorites = () => {
 
 const openFavoriteCatWindow = (catId, catUrl) => {
     const favoriteCatWindow = document.getElementById("favoriteCatWindow");
-    const favoriteCatImage = document.getElementById("favoriteCatImage");
-    const removeButton = document.getElementById("removeButton");
+    const favoriteCatImage = document.createElement("img");
+    const removeButton = document.createElement("button");
+    const closeButton = document.createElement("button");
+
+    favoriteCatWindow.innerHTML ="";
+    
+    favoriteCatImage.classList.add("favorite-cat--image");
+    favoriteCatImage.style.transform = "scale(1)";
+    favoriteCatImage.src = catUrl;    
+
+    removeButton.classList.add("favorite-cat--remove-button");
+    removeButton.innerHTML = "Remove from favorites";
     removeButton.addEventListener("click", () => {
         deleteFavoriteCat(catId);
         closeFavoriteCatWindow();
     })
-
+    closeButton.classList.add("close-button");
+    closeButton.addEventListener("click",() => {
+        closeFavoriteCatWindow();
+    })
+    favoriteCatWindow.appendChild(closeButton);
+    favoriteCatWindow.appendChild(favoriteCatImage);
+    favoriteCatWindow.appendChild(removeButton);
     favoriteCatWindow.style.transform = "scale(1)";
-    favoriteCatImage.style.transform = "scale(1)";
-    favoriteCatImage.src = catUrl;    
 };
 const closeFavoriteCatWindow = () => {
     const favoriteCatWindow = document.getElementById("favoriteCatWindow");
-    const favoriteCatImage = document.getElementById("favoriteCatImage");
+    const favoriteCatImage = document.querySelector(".favorite-cat--image");
     favoriteCatImage.style.transform = "scale(0)";
     setTimeout(() => {
         favoriteCatWindow.style.transform = "scale(0)";
