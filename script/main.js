@@ -30,6 +30,15 @@ async function loadRandomCats(amount) {
             saveButton.addEventListener("click", () => {
                 saveFavoriteCat(cat.id);
                 addToFavoritesAnimations();
+
+                saveButton.classList.add("__added");
+                saveButton.innerHTML = "Added to favorites"
+                saveButton.disabled = true;
+                setTimeout(() => {
+                    saveButton.classList.remove("__added");
+                    saveButton.innerHTML = "Add to favorites"
+                    saveButton.disabled = false;
+                }, 5000);
             });
             saveButton.classList.add("cat-card--button");
             saveButton.innerHTML = "Add to favorites";
@@ -140,7 +149,7 @@ async function uploadCat() {
     }
 }
 
-loadRandomCats(10);
+loadRandomCats(100);
 loadFavoriteCats();
 // uploadButton.addEventListener("click", uploadCat);
 
@@ -210,7 +219,9 @@ const closeFavoriteCatWindow = () => {
 const addToFavoritesAnimations = () => {
     const buttonToFavorites = document.getElementById("buttonToFavorites");
     buttonToFavorites.style.transform = "scale(1.2)";
+    buttonToFavorites.style.color = "#64c43e"
     setTimeout(() => {
         buttonToFavorites.style.transform = "scale(1)";
+        buttonToFavorites.style.color = "var(--white-color)"
     }, 200)    
 }

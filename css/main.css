@@ -99,13 +99,16 @@ body {
     color: var(--main-color);
     background: none;
     border: 1px solid var(--main-color);
-    width: 44%;
+    width: 80%;
     margin: 16px;
     padding: 4px;
     border-radius: 6px;
     cursor: pointer;
 }
-
+.__added {
+    color: #64c43e;
+    border: 1px solid #64c43e;
+}
 .main-title {
     font-family: "Patrick Hand", cursive;
     font-size: 2.4rem;
@@ -203,7 +206,7 @@ body {
     color: var(--white-color);
     background: none;
     border: 1px solid var(--white-color);
-    width: 44%;
+    width: 80%;
     margin: 16px;
     padding: 4px;
     border-radius: 6px;
