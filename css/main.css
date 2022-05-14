@@ -236,20 +236,14 @@ body {
 }
 .uploading-cats-section .uploading-form {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
     width: 300px;
     margin: 16px auto;
     padding: 0 20px;
+    gap: 14px;
 }
 .uploading-cats-section .uploading-form .uploading-input {
-    font-family: "Montserrat", sans-serif;
-    font-size: 1.4rem;
-    color: var(--white-color);
-    background: none;
-}
-
-.uploading-cats-section .uploading-form .uploading-button {
     font-family: "Montserrat", sans-serif;
     font-size: 1.4rem;
     font-weight: bold;
@@ -259,6 +253,18 @@ body {
     border-radius: 6px;
     padding: 4px;
     cursor: pointer;
+}
+
+.uploading-cats-section .uploading-form .uploading-button {
+    width: 30px;
+    height: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    background-image: url("../assets/icons/upload.svg");
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
 }
 .pop-up-layer {
     display: grid;
