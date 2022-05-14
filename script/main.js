@@ -225,6 +225,9 @@ const addToFavoritesAnimations = () => {
 }
 
 const showErrorWindow = (status, message) => {
+    const randomCatsSection = document.getElementById("randomCatsSection");
+
+    randomCatsSection.style.position = "fixed";
     const errorWindow = document.getElementById("errorWindow");
     const errorPopUp = document.getElementById("errorPopUp");
     const randomCatsError = document.getElementById("randomCatsError");
@@ -237,6 +240,9 @@ const showErrorWindow = (status, message) => {
 }
 
 const closeErrorWindow = () => {
+    const randomCatsSection = document.getElementById("randomCatsSection");
+
+    randomCatsSection.style.position = "static";
     const errorWindow = document.getElementById("errorWindow");
     const errorPopUp = document.getElementById("errorPopUp");
     const randomCatsError = document.getElementById("randomCatsError");
