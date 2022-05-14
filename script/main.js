@@ -5,8 +5,6 @@ const API_URL_FAVORITES = "https://api.thecatapi.com/v1/favourites";
 const API_URL_FAVORITES_DELETE = (id) => `https://api.thecatapi.com/v1/favourites/${id}`;
 const API_URL_UPLOAD = "https://api.thecatapi.com/v1/images/upload";
 
-
-const randomCatsError = document.getElementById("randomCatsError");
 const uploadButton = document.getElementById("uploadButton");
 
 
@@ -18,7 +16,7 @@ async function loadRandomCats(amount) {
 
 
     if (res.status !== 200) {
-        randomCatsError.innerHTML = `Somethig is wrong: ${res.status}`
+        showErrorWindow(`${res.status} ${data.message}`);
     } else {
         const wrapper = document.querySelector(".wrapper");
     
@@ -69,7 +67,7 @@ async function saveFavoriteCat(id) {
     const data = await res.json();
 
     if (res.status !== 200) {
-        randomCatsError.innerHTML = `Somethig is wrong: ${res.status} ${data.message}`
+        showErrorWindow(`${res.status} ${data.message}`);
     } else {
         console.log("Cat saved");
         loadFavoriteCats();
@@ -86,7 +84,7 @@ async function loadFavoriteCats() {
     const data = await res.json();
 
     if (res.status !== 200) {
-        randomCatsError.innerHTML = `Somethig is wrong: ${res.status} ${data.message}`
+        showErrorWindow();
     } else {
         console.log("Favorites");
         console.log(data);
@@ -120,7 +118,7 @@ async function deleteFavoriteCat(id) {
     const data = await res.json();
 
     if (res.status !== 200) {
-        randomCatsError.innerHTML = `Somethig is wrong: ${res.status} ${data.message}`
+        showErrorWindow(`${res.status} ${data.message}`);
     } else {
         console.log("Cat deleted");
         loadFavoriteCats();
@@ -142,7 +140,7 @@ async function uploadCat() {
     const data = await res.json();
 
     if (res.status !== 200) {
-        randomCatsError.innerHTML = `Somethig is wrong: ${res.status} ${data.message}`
+        showErrorWindow(`${res.status} ${data.message}`);
     } else {
         console.log("Cat deleted");
         loadFavoriteCats();
@@ -151,7 +149,7 @@ async function uploadCat() {
 
 loadRandomCats(100);
 loadFavoriteCats();
-// uploadButton.addEventListener("click", uploadCat);
+uploadButton.addEventListener("click", uploadCat);
 
 
 
@@ -213,7 +211,7 @@ const closeFavoriteCatWindow = () => {
     favoriteCatImage.style.transform = "scale(0)";
     setTimeout(() => {
         favoriteCatWindow.style.transform = "scale(0)";
-    }, 300)
+    }, 400)
 }
 
 const addToFavoritesAnimations = () => {
@@ -224,4 +222,28 @@ const addToFavoritesAnimations = () => {
         buttonToFavorites.style.transform = "scale(1)";
         buttonToFavorites.style.color = "var(--white-color)"
     }, 200)    
+}
+
+const showErrorWindow = (errorInfo) => {
+    const errorWindow = document.getElementById("errorWindow");
+    const errorPopUp = document.getElementById("errorPopUp");
+    const randomCatsError = document.getElementById("randomCatsError");
+
+    errorWindow.style.zIndex = 1;
+    setTimeout(() => {
+        errorPopUp.style.transform = "scale(1)"
+        randomCatsError.innerHTML = errorInfo;    
+    }, 0)
+}
+
+const closeErrorWindow = () => {
+    const errorWindow = document.getElementById("errorWindow");
+    const errorPopUp = document.getElementById("errorPopUp");
+    const randomCatsError = document.getElementById("randomCatsError");
+
+    errorPopUp.style.transform = "scale(0)"
+    setTimeout(() => {
+        randomCatsError.innerHTML = "";    
+        errorWindow.style.zIndex = -1;
+    }, 400)
 }
