@@ -58,7 +58,7 @@ async function saveFavoriteCat(id) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "X-API-KEY": "a3b9a83e-f120-4764-bb3b-295fdae71ead"
+            "X-API-KEY": "724b46b1-9704-418f-bad6-cd10d106c92d"
         },
         body: JSON.stringify({
             image_id: id,
@@ -78,7 +78,7 @@ async function loadFavoriteCats() {
     const res = await fetch(API_URL_FAVORITES, {
         method: "GET",
         headers: {
-            "X-API-KEY": "a3b9a83e-f120-4764-bb3b-295fdae71ead"
+            "X-API-KEY": "724b46b1-9704-418f-bad6-cd10d106c92d"
         }
     });
     const data = await res.json();
@@ -112,7 +112,7 @@ async function deleteFavoriteCat(id) {
     const res = await fetch(API_URL_FAVORITES_DELETE(id), {
         method: "DELETE",
         headers: {
-            "X-API-KEY": "a3b9a83e-f120-4764-bb3b-295fdae71ead"
+            "X-API-KEY": "724b46b1-9704-418f-bad6-cd10d106c92d"
         }
     });
     const data = await res.json();
@@ -133,7 +133,7 @@ async function uploadCat() {
     const res = await fetch(API_URL_UPLOAD, {
         method: "POST",
         headers: {
-            "X-API-KEY": "a3b9a83e-f120-4764-bb3b-295fdae71ead"
+            "X-API-KEY": "724b46b1-9704-418f-bad6-cd10d106c92d"
         },
         body: formData,
     });
